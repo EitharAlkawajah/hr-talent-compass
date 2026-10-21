@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/hr_talent
-    username: postgres
-    password: ace
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/hr_talent}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:123456}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -21,7 +21,7 @@ spring:
 
   ai:
     service:
-      url: http://localhost:5000
+      url: ${AI_SERVICE_URL:http://localhost:5000}
 
 jwt:
   secret: ${JWT_SECRET:your-super-secret-jwt-key-change-in-production}
@@ -29,9 +29,9 @@ jwt:
 
 file:
   upload:
-    dir: C:/Users/eetha/OneDrive/Desktop/hr-talent-compass/backend/uploads/resumes
+    dir: ${UPLOAD_DIR:./uploads/resumes}
 
 server:
-  port: 8080
+  port: ${PORT:8080}
   error:
     include-message: always
