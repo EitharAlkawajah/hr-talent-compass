@@ -25,7 +25,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { Button } from '@mui/material';
 
-const API = axios.create({ baseURL: 'http://localhost:8080/api' });
+const API = axios.create({ baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8080/api' });
 
 const GlassPaper = styled(Paper)(({ theme }) => ({
   background: theme.palette.mode === 'dark' ? 'rgba(37,34,68,0.5)' : 'rgba(255,255,255,0.5)',

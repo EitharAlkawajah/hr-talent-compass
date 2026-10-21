@@ -11,7 +11,7 @@ import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const API = axios.create({ baseURL: 'http://localhost:8080/api' });
+const API = axios.create({ baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8080/api' });
 
 const StatCard = styled(Card)(({ theme, borderColor }) => ({
   background: theme.palette.mode === 'dark' ? 'rgba(37,34,68,0.7)' : 'rgba(255,255,255,0.7)',

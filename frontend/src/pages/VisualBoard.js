@@ -5,7 +5,7 @@ import {
   Box, Typography, Card, Chip, LinearProgress, useTheme, IconButton,
 } from '@mui/material';
 
-const API = axios.create({ baseURL: 'http://localhost:8080/api' });
+const API = axios.create({ baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8080/api' });
 
 const COLUMN_CONFIG = [
   { id: 'applied', title: 'Applied', color: '#b16dff', icon: 'fa-solid fa-inbox' },
