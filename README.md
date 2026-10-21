@@ -53,22 +53,6 @@ This project uses a **Microservices Architecture** split into three core service
 *   Netlify (CDN)
 *   Cron-job.org (Keep-alive pings)
 
-## 🚀 How to Run Locally
-
-To run this project on your own machine, you will need Java 17, Node.js, Python 3.11, and PostgreSQL installed.
-
-**1. Start the Database (PostgreSQL):**
-*   Create a database named `hr_talent`.
-*   Update the `backend/src/main/resources/application.yml` with your DB credentials.
-
-**2. Start the AI Service:**
-```bash
-cd ai-service
-python -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-pip install -r requirements.txt
-python -m spacy download en_core_web_md
-python app.py
 ## 🚀 Future Enhancements
 
 While the current version of HR Talent Compass is fully functional, the following enhancements are planned for future iterations to transition it into a production-ready enterprise application:
@@ -92,3 +76,19 @@ While the current version of HR Talent Compass is fully functional, the followin
 ### 5. CI/CD Pipeline & Automated Testing
 - **Current State:** Code is deployed manually via GitHub pushes.
 - **Enhancement:** Create a GitHub Actions workflow to automatically run JUnit tests for the backend and Jest tests for the frontend upon every pull request. Upon merging to `main`, the pipeline will automatically deploy the updated Docker images to production.
+## 🚀 How to Run Locally
+
+To run this project on your own machine, you will need Java 17, Node.js, Python 3.11, and PostgreSQL installed.
+
+**1. Start the Database (PostgreSQL):**
+*   Create a database named `hr_talent`.
+*   Update the `backend/src/main/resources/application.yml` with your DB credentials.
+
+**2. Start the AI Service:**
+```bash
+cd ai-service
+python -m venv venv
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+pip install -r requirements.txt
+python -m spacy download en_core_web_md
+python app.py
