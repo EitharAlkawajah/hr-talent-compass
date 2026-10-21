@@ -69,3 +69,26 @@ source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 pip install -r requirements.txt
 python -m spacy download en_core_web_md
 python app.py
+## 🚀 Future Enhancements
+
+While the current version of HR Talent Compass is fully functional, the following enhancements are planned for future iterations to transition it into a production-ready enterprise application:
+
+### 1. Cloud Storage for Resumes (AWS S3 / Cloudinary)
+- **Current State:** Resumes are stored in the temporary file system (`/tmp`) of the hosting platform.
+- **Enhancement:** Integrate AWS S3 or Cloudinary to permanently store resumes. This ensures that files are not lost when the free-tier server restarts and allows for scalable, secure file delivery.
+
+### 2. Authentication & Role-Based Access Control (RBAC)
+- **Current State:** The application is open to anyone with the link.
+- **Enhancement:** Implement JWT (JSON Web Token) authentication using Spring Security. Add RBAC to separate access levels (e.g., HR Admins can create jobs and move candidates, while Candidates can only submit applications).
+
+### 3. Automated Email Notifications
+- **Current State:** Status updates in the Kanban board are visual only.
+- **Enhancement:** Integrate an email service like SendGrid or AWS SES. When a candidate is moved to "Interview Scheduled" or "Rejected", the system will automatically send a templated email to the candidate notifying them of the status change.
+
+### 4. Redis Caching & Pagination
+- **Current State:** The backend queries PostgreSQL directly for every request.
+- **Enhancement:** Implement Redis to cache frequently accessed data (like active job listings) to reduce database load. Add server-side pagination to the Visual Board to handle thousands of applications smoothly.
+
+### 5. CI/CD Pipeline & Automated Testing
+- **Current State:** Code is deployed manually via GitHub pushes.
+- **Enhancement:** Create a GitHub Actions workflow to automatically run JUnit tests for the backend and Jest tests for the frontend upon every pull request. Upon merging to `main`, the pipeline will automatically deploy the updated Docker images to production.
