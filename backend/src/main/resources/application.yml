@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hr_talent
+    username: postgres
+    password: ace
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  ai:
+    service:
+      url: http://localhost:5000
+
+jwt:
+  secret: ${JWT_SECRET:your-super-secret-jwt-key-change-in-production}
+  expiration: 86400000
+
+file:
+  upload:
+    dir: C:/Users/eetha/OneDrive/Desktop/hr-talent-compass/backend/uploads/resumes
+
+server:
+  port: 8080
+  error:
+    include-message: always

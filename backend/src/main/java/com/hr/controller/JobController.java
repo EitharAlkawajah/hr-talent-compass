@@ -1,0 +1,48 @@
+package com.hr.controller;
+
+import com.hr.model.Job;
+import com.hr.service.JobService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/jobs")
+@CrossOrigin(origins = "http://localhost:3000")
+public class JobController {
+
+    private final JobService jobService;
+
+    // Manual constructor
+    public JobController(JobService jobService) {
+        this.jobService = jobService;
+    }
+
+    @PostMapping
+    public ResponseEntity<Job> createJob(@RequestBody Job job) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(jobService.createJob(job));
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<Job>> getAllJobs(Pageable pageable) {
+        return ResponseEntity.ok(jobService.getAllJobs(pageable));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Job> getJobById(@PathVariable String id) {
+        return ResponseEntity.ok(jobService.getJobById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Job> updateJob(@PathVariable String id, @RequestBody Job job) {
+        return ResponseEntity.ok(jobService.updateJob(id, job));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteJob(@PathVariable String id) {
+        jobService.deleteJob(id);
+        return ResponseEntity.noContent().build();
+    }
+}
