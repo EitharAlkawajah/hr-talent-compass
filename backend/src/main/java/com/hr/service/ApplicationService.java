@@ -48,11 +48,16 @@ public class ApplicationService {
     @Transactional
     public Application submitApplication(Application application, MultipartFile resume) {
         try {
-            Path uploadPath = Paths.get(uploadDir);
-            if (!Files.exists(uploadPath)) Files.createDirectories(uploadPath);
+            // 🔥 FIX: Force the path to be an absolute path on the server
+            Path uploadPath = Paths.get(uploadDir).toAbsolutePath().normalize();
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
 
             String fileName = UUID.randomUUID() + "_" + resume.getOriginalFilename();
             Path filePath = uploadPath.resolve(fileName);
+            
+            // Save the file
             resume.transferTo(filePath.toFile());
             application.setResumeFilePath(filePath.toString());
 
