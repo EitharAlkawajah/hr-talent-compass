@@ -1,0 +1,14 @@
+name: Keep Render Services Alive
+
+on:
+  schedule:
+    - cron: '*/14 * * * *'  # Runs every 14 minutes
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Backend
+        run: curl -s https://hr-compass-backend.onrender.com/api/health > /dev/null
+      - name: Ping AI Service
+        run: curl -s https://hr-compass-ai-o4cv.onrender.com/health > /dev/null
